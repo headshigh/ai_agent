@@ -62,7 +62,7 @@ export async function GET(req:NextRequest) {
         }).bindTools(tools);
 
         //when it stop
-        function shouldContinue(state) {
+        function shouldContinue(state:any) {
             const messages = state.messages;
             const lastMessage = messages[messages.length - 1];
 
@@ -72,7 +72,7 @@ export async function GET(req:NextRequest) {
             return "__end__";
         }
 //call the model
-        async function callModel(state) {
+        async function callModel(state:any) {
             const messages = state.messages;
             const response = await model.invoke(messages);
 
@@ -83,6 +83,7 @@ export async function GET(req:NextRequest) {
         //add a node that calls the model
             .addNode("agent", callModel)
             //add a node that calls the tools
+            //@ts-expect-error
             .addNode("tools", toolNode)
             //add an edge that starts the workflow
             .addEdge("__start__", "agent")

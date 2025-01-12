@@ -1,7 +1,8 @@
 
 import { Ollama } from "@langchain/ollama";
+import { NextRequest } from "next/server";
 
-export async function GET(req) {
+export async function GET(req:NextRequest) {
     try {
         const ollama = new Ollama({
             model: "llama3.2",
@@ -11,7 +12,7 @@ export async function GET(req) {
         const response = await ollama.invoke("Hello, world!");
 
         return Response.json(response);
-    } catch (error) {
+    } catch (error:any) {
         console.log(error);
         return Response.json({ error: error.message }, { status: 500 });
     }

@@ -5,13 +5,15 @@ import { ChatMessageHistory } from "langchain/stores/message/in_memory";
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { Ollama } from "@langchain/ollama";
+import { NextRequest } from "next/server";
+import { any } from "zod";
 
 // Create a chat history to store messages
 const mainChatMessageHistory = new ChatMessageHistory();
 
 // Define the main function that handles POST requests
 
-export async function POST(req) {
+export async function POST(req:NextRequest) {
     try {
         // Get the user's question from the request
 
@@ -20,6 +22,7 @@ export async function POST(req) {
         const model = new Ollama({
             model: "llama3.2",
             baseUrl: "http://localhost:11434",
+            //@ts-expect-error
             stream: true,
         });
 
@@ -53,6 +56,7 @@ export async function POST(req) {
                         // Keep the last word in the buffer
 
                         buffer = words[words.length - 1];
+                        //@ts-expect-error
                         lastWord = completeWords.split(/\s+/).pop();
                     }
                 }
@@ -85,7 +89,8 @@ export async function POST(req) {
         // Handle any errors and return an error response
 
         console.error(error);
-        return new Response(JSON.stringify({ error: error.message }), {
+        //@ts-expect-error
+        return new Response(JSON.stringify({ error: error?.message }), {
             status: 500,
             headers: { "Content-Type": "application/json" },
         });

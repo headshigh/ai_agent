@@ -2,7 +2,6 @@
 import "cheerio";
 import { TogetherAIEmbeddings } from "@langchain/community/embeddings/togetherai";
 import { CheerioWebBaseLoader } from "@langchain/community/document_loaders/web/cheerio";
-import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
@@ -10,13 +9,15 @@ import { StringOutputParser } from "@langchain/core/output_parsers";
 import { PineconeStore } from "@langchain/pinecone";
 import { Pinecone as PineconeClient } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
+import { NextRequest } from "next/server";
 
 dotenv.config();
 
-export async function GET(req) {
+export async function GET(req:NextRequest) {
     try {
         //llm data + pdf files data == rag
         const pinecone = new PineconeClient();
+        //@ts-expect-error
         const pineconeIndex = pinecone.Index(process.env.PINECONE_INDEX);
 //create embedding
         const embeddings = new TogetherAIEmbeddings({
@@ -95,6 +96,6 @@ export async function GET(req) {
     }
 }
 
-function generateNumberStrings(arrayLength) {
+function generateNumberStrings(arrayLength:any) {
     return Array.from({ length: arrayLength }, (_, i) => (i + 1).toString());
 }

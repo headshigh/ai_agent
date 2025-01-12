@@ -1,5 +1,5 @@
 import { PDFLoader } from "@langchain/community/document_loaders/fs/pdf";
-import { RecursiveCharacterTextSplitter } from "@langchain/text-splitter";
+import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 export async function GET(req:NextRequest){

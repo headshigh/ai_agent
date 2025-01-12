@@ -59,7 +59,7 @@ export async function GET(req:NextRequest) {
         });
 
         return NextResponse.json(result);
-    } catch (error) {
+    } catch (error:any) {
         console.log(error);
         return NextResponse.json(error.message);
     }

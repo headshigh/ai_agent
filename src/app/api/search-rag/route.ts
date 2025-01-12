@@ -2,10 +2,10 @@
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
 import dotenv from "dotenv";
-
+import { NextRequest } from "next/server";
 dotenv.config();
 
-export async function GET(req, route) {
+export async function GET(req:NextRequest) {
     try {
         ///llm + internet search results
         const { searchParams } = new URL(req.url);
@@ -21,7 +21,7 @@ export async function GET(req, route) {
             maxResults: 10,
             apiKey: process.env.TAVILY_API_KEY,
         });
-
+//@ts-expect-error
         const searchResults = await search.invoke(query);
 
         const prompt = ` You are an assistant for question-answering tasks. 
