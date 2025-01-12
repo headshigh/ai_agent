@@ -1,27 +1,41 @@
 {
-  "name": "ai_agent",
+  "name": "agent-js",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.4"
+    "@langchain/community": "^0.2.31",
+    "@langchain/core": "^0.2.27",
+    "@langchain/google-genai": "^0.0.26",
+    "@langchain/langgraph": "^0.0.34",
+    "@langchain/ollama": "^0.0.4",
+    "@langchain/pinecone": "^0.0.9",
+    "@pinecone-database/pinecone": "^3.0.1",
+    "cheerio": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "framer-motion": "^11.3.31",
+    "langchain": "^0.2.16",
+    "langchainhub": "^0.0.11",
+    "next": "14.2.5",
+    "pdf-parse": "^1.1.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^5.3.0",
+    "react-markdown": "^9.0.1",
+    "react-syntax-highlighter": "^15.5.0",
+    "remark-gfm": "^4.0.0",
+    "tailwind-scrollbar": "^3.1.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.4",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^3.4.1"
   }
 }
